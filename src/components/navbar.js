@@ -1,5 +1,5 @@
 function Navbar() {
     return (
-        <div className="navbar"></div>
+        <div className="Navbar"></div>
     )
 }
