@@ -1,0 +1,7 @@
+.App .block {
+    display: flex;
+}
+
+.App .block button {
+    display: block;
+}

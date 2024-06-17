@@ -1,4 +1,6 @@
 import React, {useState} from 'react'; 
+import './styles.css';
+import { Auth } from './components/auth'
 
 
 let num = 0
@@ -77,6 +79,26 @@ function App() {
       <p> This is {button.btnB} </p>
       <p> This is {button.btnC} </p>
       <button onClick={updateName}> change to abc </button>
+
+      <div className='block'>
+        <button> 1 </button>
+        <button> 2 </button>
+        <button> 3 </button>
+        <button> 4 </button>
+      </div>
+
+      <br /><br /><br /> 
+
+      testing for firebase authetication 
+
+      <br />
+      <input placeholder='Phone Number' /> <br />
+      <button> sign in </button>
+      <button> log in </button>
+
+      <br /><br /><br /> 
+
+      <Auth />
       
 
     </div>
