@@ -1,6 +1,7 @@
 import React, {useState} from 'react'; 
 import './styles.css';
-import { Auth } from './components/auth'
+import { Auth } from './components/auth';
+import { AuthPhone } from './components/authPhone';
 
 
 let num = 0
@@ -99,6 +100,10 @@ function App() {
       <br /><br /><br /> 
 
       <Auth />
+
+      <br /><br /><br /> 
+
+      <AuthPhone />
       
 
     </div>
