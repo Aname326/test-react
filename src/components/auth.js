@@ -1,5 +1,5 @@
 import { auth, googleProvider } from "./firebase";
-import { createUserWithEmailAndPassword, signInWithPopup,  } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from "react";
 
 
@@ -20,7 +20,7 @@ export const Auth = () => {
 
     const signInWithGoogle = async () => {
         try{
-            await createUserWithEmailAndPassword(auth, email, password)
+            await signInWithPopup(auth, googleProvider)
         } catch(err){
             console.error(err)
         }    
@@ -28,7 +28,7 @@ export const Auth = () => {
 
     const logout = async () => {
         try {
-            await signInWithPopup(auth)
+            await signOut(auth)
         } catch (err) {
             console.error(err)
         }
