@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
-import { db } from "./config/firebase";
+import { db } from "./components/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 
 let num = 0
@@ -52,13 +53,24 @@ function App() {
 
   {/* testing of authentication */}
 
-  const [date, setDate] = useState([]);
+  const [date, setDateList] = useState([]);
+
+  const dateCollectionRef = collection(db, "familynightTEST")
 
   useEffect(() => {
-    const getDate = () => {
-
+    const getDateList = async () => {
+      // read the data
+      // set the date list 
+      try{
+        const data = await getDocs(dateCollectionRef)
+        console.log(data)
+      } catch (err) {
+        console.error(err)
+      }
     }
-  })
+
+    getDateList();
+  }, [] ) 
 
 
 
