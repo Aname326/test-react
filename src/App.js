@@ -56,7 +56,7 @@ function App() {
   const [date, setDateList] = useState([]);
 
   // New Dates States 
-  const [newDate, setNewDate] = useState("")
+  const [newDate, setNewDate] = useState(0)
   const [newRegName, setNewRegName] = useState("")
   const [newNumOfAdults, setNewNumOfAdults] = useState("")
 
