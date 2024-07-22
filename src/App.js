@@ -55,6 +55,11 @@ function App() {
 
   const [date, setDateList] = useState([]);
 
+  // New Dates States 
+  const [newDate, setNewDate] = useState("")
+  const [newRegName, setNewRegName] = useState("")
+  const [newNumOfAdults, setNewNumOfAdults] = useState("")
+
   const dateCollectionRef = collection(db, "familynightTEST")
 
   useEffect(() => {
