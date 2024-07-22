@@ -136,6 +136,20 @@ function App() {
       <AuthPhone />
 
       <br /><br /><br />
+      {/* firebase storing code */}
+
+      <div> 
+        <input placeholder="another date..." type="date" />
+        <input placeholder="register name..." />
+        <input placeholder="number of adults..." type="number" />
+        <input placeholder="number of children..." type="number" />
+        <input placeholder="dietary requirements..." />
+        <input type="checkbox" />
+        <label> Paid </label>
+        <br /> <button> submit </button>
+      </div>
+
+      <br />
 
       <div>
         {date.map((familynightTEST) => (
