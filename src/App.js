@@ -140,7 +140,7 @@ function App() {
       <div>
         {date.map((familynightTEST) => (
           <div>
-            <h1> {familynightTEST.RegName}</h1>
+            <h1 style={{color: familynightTEST.paid ? "red" : "green" }}> {familynightTEST.RegName}</h1>
             <p> Number of Adults: {familynightTEST.NumOfAdults} </p>
           </div>
         ))}
