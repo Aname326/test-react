@@ -134,6 +134,17 @@ function App() {
       <br /><br /><br /> 
 
       <AuthPhone />
+
+      <br /><br /><br />
+
+      <div>
+        {date.map((familynightTEST) => (
+          <div>
+            <h1> {familynightTEST.RegName}</h1>
+            <p> Number of Adults: {familynightTEST.NumOfAdults} </p>
+          </div>
+        ))}
+      </div>
       
 
     </div>
