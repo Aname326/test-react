@@ -63,7 +63,11 @@ function App() {
       // set the date list 
       try{
         const data = await getDocs(dateCollectionRef)
-        console.log(data)
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(), 
+          id: doc.id, 
+        }))
+        setDateList(filteredData);
       } catch (err) {
         console.error(err)
       }
