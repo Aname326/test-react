@@ -1,7 +1,8 @@
-import React, {useState} from 'react'; 
+import React, {useEffect, useState} from 'react'; 
 import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
+import { db } from "./config/firebase";
 
 
 let num = 0
@@ -48,6 +49,19 @@ function App() {
       }
     })
   }
+
+  {/* testing of authentication */}
+
+  const [date, setDate] = useState([]);
+
+  useEffect(() => {
+    const getDate = () => {
+
+    }
+  })
+
+
+
 
   return (
     <div className="App">
