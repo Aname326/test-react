@@ -3,7 +3,7 @@ import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
 import { db } from "./components/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 
 
 let num = 0
@@ -83,6 +83,18 @@ function App() {
   }, [] ) 
 
 
+  const onSubmitDate = async () => {
+    try{
+      await addDoc(dateCollectionRef, {
+        //how to put date??
+        RegName: newRegName,
+        NumOfAdults: newNumOfAdults,
+        Paid: newPaid
+      })
+    } catch(err) {
+      console.error(err);
+    }
+  }
 
 
   return (
@@ -152,7 +164,7 @@ function App() {
         <input placeholder="dietary requirements..." />
         <input type="checkbox" onchange={(e) => setNewPaid(e.target.checked)} />
         <label> Paid </label>
-        <br /> <button> submit </button>
+        <br /> <button onClick={onSubmitDate}> submit </button>
       </div>
 
       <br />
