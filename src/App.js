@@ -63,22 +63,22 @@ function App() {
 
   const dateCollectionRef = collection(db, "familynightTEST")
 
-  useEffect(() => {
-    const getDateList = async () => {
-      // read the data
-      // set the date list 
-      try{
-        const data = await getDocs(dateCollectionRef)
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(), 
-          id: doc.id, 
-        }))
-        setDateList(filteredData);
-      } catch (err) {
-        console.error(err)
-      }
+  const getDateList = async () => {
+    // read the data
+    // set the date list 
+    try{
+      const data = await getDocs(dateCollectionRef)
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(), 
+        id: doc.id, 
+      }))
+      setDateList(filteredData);
+    } catch (err) {
+      console.error(err)
     }
+  }
 
+  useEffect(() => {
     getDateList();
   }, [] ) 
 
@@ -90,7 +90,9 @@ function App() {
         RegName: newRegName,
         NumOfAdults: newNumOfAdults,
         Paid: newPaid
-      })
+      });
+
+      getDateList();
     } catch(err) {
       console.error(err);
     }
@@ -162,7 +164,7 @@ function App() {
         <input placeholder="number of adults..." type="number" onChange={(e) => setNewNumOfAdults(Number(e.target.value))} />
         <input placeholder="number of children..." type="number" />
         <input placeholder="dietary requirements..." />
-        <input type="checkbox" onchange={(e) => setNewPaid(e.target.checked)} />
+        <input type="checkbox" onchange={(e) => setNewPaid(Boolean(e.target.checked))} />
         <label> Paid </label>
         <br /> <button onClick={onSubmitDate}> submit </button>
       </div>
@@ -172,7 +174,7 @@ function App() {
       <div>
         {date.map((familynightTEST) => (
           <div>
-            <h1 style={{color: familynightTEST.paid ? "red" : "green" }}> {familynightTEST.RegName}</h1>
+            <h1 style={{color: familynightTEST.Paid ? "green" : "red" }}> {familynightTEST.RegName}</h1>
             <p> Number of Adults: {familynightTEST.NumOfAdults} </p>
           </div>
         ))}
