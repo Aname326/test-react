@@ -56,9 +56,10 @@ function App() {
   const [date, setDateList] = useState([]);
 
   // New Dates States 
-  const [newDate, setNewDate] = useState(0)
+  const [newDate, setNewDate] = useState("2020-03-01")
   const [newRegName, setNewRegName] = useState("")
   const [newNumOfAdults, setNewNumOfAdults] = useState("")
+  const [newPaid, setNewPaid] = useState(false)
 
   const dateCollectionRef = collection(db, "familynightTEST")
 
@@ -144,12 +145,12 @@ function App() {
       {/* firebase storing code */}
 
       <div> 
-        <input placeholder="another date..." type="date" />
-        <input placeholder="register name..." />
-        <input placeholder="number of adults..." type="number" />
+        <input placeholder="another date..." type="date" onChange={(e) => setNewDate(Date(e.target.value))} />
+        <input placeholder="register name..." onChange={(e) => setNewRegName(e.target.value)} />
+        <input placeholder="number of adults..." type="number" onChange={(e) => setNewNumOfAdults(Number(e.target.value))} />
         <input placeholder="number of children..." type="number" />
         <input placeholder="dietary requirements..." />
-        <input type="checkbox" />
+        <input type="checkbox" onchange={(e) => setNewPaid(e.target.checked)} />
         <label> Paid </label>
         <br /> <button> submit </button>
       </div>
