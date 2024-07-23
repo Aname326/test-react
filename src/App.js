@@ -3,7 +3,7 @@ import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
 import { db } from "./components/firebase";
-import { getDocs, collection, addDoc } from "firebase/firestore";
+import { getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 
 let num = 0
@@ -76,6 +76,12 @@ function App() {
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const deleteDate = async (id) => {
+    const dateDoc = doc(db, "familynightTEST", id);
+    await deleteDoc(dateDoc);
+    getDateList();
   }
 
   useEffect(() => {
@@ -176,6 +182,7 @@ function App() {
           <div>
             <h1 style={{color: familynightTEST.Paid ? "green" : "red" }}> {familynightTEST.RegName}</h1>
             <p> Number of Adults: {familynightTEST.NumOfAdults} </p>
+            <button onClick={() => deleteDate(familynightTEST.id)}> delete </button>
           </div>
         ))}
       </div>
