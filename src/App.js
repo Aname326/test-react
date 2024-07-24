@@ -170,7 +170,7 @@ function App() {
         <input placeholder="number of adults..." type="number" onChange={(e) => setNewNumOfAdults(Number(e.target.value))} />
         <input placeholder="number of children..." type="number" />
         <input placeholder="dietary requirements..." />
-        <input type="checkbox" onchange={(e) => setNewPaid(Boolean(e.target.checked))} />
+        <input type="checkbox" checked={newPaid} onChange={(e) => setNewPaid(e.target.checked)} />
         <label> Paid </label>
         <br /> <button onClick={onSubmitDate}> submit </button>
       </div>
