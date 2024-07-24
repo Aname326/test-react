@@ -3,7 +3,7 @@ import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
 import { db } from "./components/firebase";
-import { getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
 
 let num = 0
@@ -61,6 +61,9 @@ function App() {
   const [newNumOfAdults, setNewNumOfAdults] = useState("")
   const [newPaid, setNewPaid] = useState(false)
 
+  // Update Register Name States
+  const [updateRegName, setUpdateRegName] = useState("")
+
   const dateCollectionRef = collection(db, "familynightTEST")
 
   const getDateList = async () => {
@@ -81,6 +84,12 @@ function App() {
   const deleteDate = async (id) => {
     const dateDoc = doc(db, "familynightTEST", id);
     await deleteDoc(dateDoc);
+    getDateList();
+  }
+
+  const updateDate = async (id, ) => {
+    const dateDoc = doc(db, "familynightTEST", id);
+    await updateDoc(dateDoc, {RegName: updateRegName});
     getDateList();
   }
 
@@ -183,6 +192,8 @@ function App() {
             <h1 style={{color: familynightTEST.Paid ? "green" : "red" }}> {familynightTEST.RegName}</h1>
             <p> Number of Adults: {familynightTEST.NumOfAdults} </p>
             <button onClick={() => deleteDate(familynightTEST.id)}> delete </button>
+            <input placeholder='new register name...' onChange={(e) => setUpdateRegName(e.target.value)} />
+            <button onClick={() => updateDate(familynightTEST.id)}> update </button>
           </div>
         ))}
       </div>
