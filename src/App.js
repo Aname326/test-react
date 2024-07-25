@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
-import { db } from "./components/firebase";
+import { db, auth } from "./components/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
 
@@ -104,7 +104,8 @@ function App() {
         //how to put date??
         RegName: newRegName,
         NumOfAdults: newNumOfAdults,
-        Paid: newPaid
+        Paid: newPaid,
+        userId: auth?.currentUser?.uid
       });
 
       getDateList();
