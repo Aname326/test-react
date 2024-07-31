@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
-import { db, auth } from "./components/firebase";
+import { db, auth, storage } from "./components/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
-
+import { ref, uploadBytes } from "firebase/storage";
 
 let num = 0
 
@@ -64,6 +64,9 @@ function App() {
   // Update Register Name States
   const [updateRegName, setUpdateRegName] = useState("")
 
+  // File Upload State
+  const [fileUpload, setFileUpload] = useState(null)
+
   const dateCollectionRef = collection(db, "familynightTEST")
 
   const getDateList = async () => {
@@ -111,6 +114,16 @@ function App() {
       getDateList();
     } catch(err) {
       console.error(err);
+    }
+  }
+
+  const uploadFile = async () => {
+    if (!fileUpload) return;
+    const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`)
+    try {
+      await uploadBytes(filesFolderRef, fileUpload);
+    } catch(err) {
+      console.error(err)
     }
   }
 
@@ -198,7 +211,16 @@ function App() {
           </div>
         ))}
       </div>
+
+      <br /><br /><br />
+
+      <div>
+        <input type="file" onChange={(e) => setFileUpload(e.target.files[0])} /> 
+        <br />
+        <button onClick={uploadFile}> Submit File</button>
+      </div>
       
+      <br /><br /><br />
 
     </div>
   );
