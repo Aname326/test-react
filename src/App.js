@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'; 
+import React, {useState} from 'react'; 
 import './styles.css';
 import { Auth } from './components/auth';
 import { AuthPhone } from './components/authPhone';
@@ -6,10 +6,10 @@ import { db, auth, storage } from "./components/firebase";
 import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
-let num = 0
+
 
 function App() {
-  {/* 1st testing starts  -- how to use useState */} 
+  /* 1st testing starts  -- how to use useState */ 
   const [isClicked, setIsClicked] = useState(false);
   const [Clicked, itIsClicked] = useState(false)
 
@@ -21,7 +21,7 @@ function App() {
     itIsClicked(!Clicked)
   }
 
-  {/* 2nd testing starts  -- changing different buttons names -- failed */}
+  /* 2nd testing starts  -- changing different buttons names -- failed */
   const [button1, setName1] = useState("original1")
   const [button2, setName2] = useState("original2")
   const [button3, setName3] = useState("original3")
@@ -32,7 +32,7 @@ function App() {
     setName3(!button3)
   }
 
-  {/* 3rdd testing starts  -- using hook */}
+  /* 3rdd testing starts  -- using hook */
 
   const [button, btnNames] = useState({
     btnA: 'A',
@@ -51,7 +51,7 @@ function App() {
     })
   }
 
-  {/* testing of authentication */}
+  /* testing of authentication */
 
   const [date, setDateList] = useState([]);
 
@@ -96,9 +96,9 @@ function App() {
     getDateList();
   }
 
-  useEffect(() => {
-    getDateList();
-  }, [] ) 
+  
+    
+  
 
 
   const onSubmitDate = async () => {
@@ -108,7 +108,7 @@ function App() {
         RegName: newRegName,
         NumOfAdults: newNumOfAdults,
         Paid: newPaid,
-        userId: auth?.currentUser?.uid
+        userId: auth?.currentUser?.uid, date: newDate
       });
 
       getDateList();
@@ -161,7 +161,7 @@ function App() {
       <button onClick={updateName}> change to abc </button>
 
       <div className='block'>
-        <button> 1 </button>
+        <button onClick={changeClicked}> 1 </button>
         <button> 2 </button>
         <button> 3 </button>
         <button> 4 </button>
